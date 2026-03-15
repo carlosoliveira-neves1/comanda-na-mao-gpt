@@ -34,4 +34,8 @@ app.use("/audit", auditRoutes)
 app.use("/printer-profiles", printerProfilesRoutes)
 app.use("/print", printRoutes)
 
-app.listen(process.env.PORT || 3001, () => console.log("API rodando"))
+if (require.main === module) {
+  app.listen(process.env.PORT || 3001, () => console.log("API rodando"))
+}
+
+module.exports = app
