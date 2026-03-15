@@ -1,0 +1,139 @@
+generator client {
+  provider = "prisma-client-js"
+}
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           Int        @id @default(autoincrement())
+  name         String
+  email        String     @unique
+  passwordHash String
+  role         String
+  isActive     Boolean    @default(true)
+  createdAt    DateTime   @default(now())
+  auditLogs    AuditLog[]
+}
+
+model Table {
+  id        Int      @id @default(autoincrement())
+  number    Int
+  capacity  Int
+  status    String   @default("livre")
+  createdAt DateTime @default(now())
+  orders    Order[]
+}
+
+model MenuItem {
+  id          Int         @id @default(autoincrement())
+  name        String
+  description String?
+  price       Float
+  active      Boolean     @default(true)
+  sector      String      @default("COZINHA")
+  createdAt   DateTime    @default(now())
+  orderItems  OrderItem[]
+}
+
+model Order {
+  id           Int         @id @default(autoincrement())
+  tableId      Int
+  table        Table       @relation(fields: [tableId], references: [id])
+  total        Float
+  status       String
+  source       String      @default("LOCAL")
+  customerName String?
+  createdAt    DateTime    @default(now())
+  items        OrderItem[]
+  payments     Payment[]
+}
+
+model OrderItem {
+  id         Int      @id @default(autoincrement())
+  orderId    Int
+  menuItemId Int
+  quantity   Int
+  price      Float
+  notes      String?
+  order      Order    @relation(fields: [orderId], references: [id])
+  menuItem   MenuItem @relation(fields: [menuItemId], references: [id])
+}
+
+model Payment {
+  id         Int      @id @default(autoincrement())
+  orderId    Int?
+  order      Order?   @relation(fields: [orderId], references: [id])
+  method     String
+  amount     Float
+  amountPaid Float
+  change     Float
+  createdAt  DateTime @default(now())
+}
+
+model PrintJob {
+  id                 Int       @id @default(autoincrement())
+  orderId            Int?
+  restaurantId       Int?
+  source             String
+  sector             String?
+  status             String
+  printerName        String?
+  paperWidth         Int?
+  copies             Int?      @default(1)
+  content            String
+  errorMessage       String?
+  bridgeResponseJson String?
+  createdAt          DateTime  @default(now())
+  printedAt          DateTime?
+}
+
+model PrinterProfile {
+  id                Int      @id @default(autoincrement())
+  name              String
+  sector            String
+  bridgePrinterName String
+  paperWidth        Int      @default(58)
+  encoding          String   @default("CP860")
+  isActive          Boolean  @default(true)
+  createdAt         DateTime @default(now())
+}
+
+model CashRegister {
+  id              Int            @id @default(autoincrement())
+  userName        String
+  status          String
+  openingAmount   Float
+  salesTotal      Float?         @default(0)
+  pixTotal        Float?         @default(0)
+  cardTotal       Float?         @default(0)
+  cashTotal       Float?         @default(0)
+  withdrawalTotal Float?         @default(0)
+  supplyTotal     Float?         @default(0)
+  expectedAmount  Float?         @default(0)
+  createdAt       DateTime       @default(now())
+  closedAt        DateTime?
+  movements       CashMovement[]
+}
+
+model CashMovement {
+  id             Int          @id @default(autoincrement())
+  cashRegisterId Int
+  cashRegister   CashRegister @relation(fields: [cashRegisterId], references: [id])
+  type           String
+  amount         Float
+  note           String?
+  createdAt      DateTime     @default(now())
+}
+
+model AuditLog {
+  id          Int      @id @default(autoincrement())
+  action      String
+  entityType  String
+  entityId    String?
+  payloadJson String?
+  userId      Int?
+  user        User?    @relation(fields: [userId], references: [id])
+  createdAt   DateTime @default(now())
+}

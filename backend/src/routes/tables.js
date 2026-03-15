@@ -1,0 +1,34 @@
+const express = require("express")
+const QRCode = require("qrcode")
+const { PrismaClient } = require("@prisma/client")
+const { requireAuth, requirePermission } = require("../middleware/auth")
+const prisma = new PrismaClient()
+const router = express.Router()
+
+router.get("/", requireAuth, requirePermission("orders.view"), async (_req, res) => {
+  res.json(await prisma.table.findMany({ orderBy: { number: "asc" } }))
+})
+
+router.post("/", requireAuth, requirePermission("tables.manage"), async (req, res) => {
+  const table = await prisma.table.create({
+    data: {
+      number: Number(req.body.number),
+      capacity: Number(req.body.capacity || 4),
+      status: req.body.status || "livre"
+    }
+  })
+  const url = `http://localhost:5173/mesa/${table.id}`
+  const qrCode = await QRCode.toDataURL(url)
+  await prisma.auditLog.create({
+    data: {
+      action: "TABLE_CREATE",
+      entityType: "TABLE",
+      entityId: String(table.id),
+      userId: req.user.id,
+      payloadJson: JSON.stringify({ number: table.number })
+    }
+  })
+  res.json({ table, qrCode, url })
+})
+
+module.exports = router

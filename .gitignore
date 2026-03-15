@@ -1,0 +1,11 @@
+node_modules/
+dist/
+build/
+.env
+.env.*
+!.env.example
+backend/.env
+frontend/.env
+printer-bridge-real/.env
+.DS_Store
+Thumbs.db

@@ -1,0 +1,108 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-base: #f6f7f3;
+  --bg-elevated: #ffffff;
+  --bg-panel: #fffaf2;
+  --bg-soft: #eef2f6;
+  --border-strong: #dbe3ea;
+  --border-soft: rgba(31, 41, 55, 0.08);
+  --text-main: #17212b;
+  --text-soft: #425466;
+  --text-muted: #718295;
+  --accent: #ff8a3d;
+  --accent-2: #ffd166;
+  --info: #55b6e7;
+  --success: #28b284;
+  --danger: #e85d75;
+}
+
+body {
+  font-family: "Segoe UI", sans-serif;
+  background:
+    radial-gradient(circle at top left, rgba(255, 138, 61, 0.18), transparent 24%),
+    radial-gradient(circle at top right, rgba(85, 182, 231, 0.14), transparent 20%),
+    linear-gradient(180deg, #fffdf8 0%, #f8f7f3 48%, #f2f6fb 100%);
+  color: var(--text-main);
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.glass-shell {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.92) 0%, rgba(251, 251, 248, 0.94) 100%);
+  border: 1px solid var(--border-strong);
+  backdrop-filter: blur(18px);
+}
+
+.card-soft {
+  @apply rounded-[28px];
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.96) 0%, rgba(250, 251, 252, 0.98) 100%);
+  border: 1px solid var(--border-strong);
+  box-shadow: 0 18px 48px rgba(28, 45, 64, 0.08);
+}
+
+.card-muted {
+  @apply rounded-[24px];
+  background: rgba(244, 247, 250, 0.92);
+  border: 1px solid var(--border-soft);
+}
+
+.btn-primary {
+  @apply rounded-2xl px-4 py-3 font-semibold shadow-soft transition duration-200 hover:-translate-y-0.5;
+  color: #17212b;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
+}
+
+.btn-secondary {
+  @apply rounded-2xl px-4 py-3 font-semibold transition;
+  color: var(--text-main);
+  background: rgba(255, 255, 255, 0.84);
+  border: 1px solid var(--border-strong);
+}
+
+.input-soft {
+  @apply w-full rounded-2xl px-4 py-3 outline-none transition;
+  color: var(--text-main);
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid var(--border-strong);
+}
+
+.input-soft::placeholder {
+  color: var(--text-muted);
+}
+
+.input-soft:focus {
+  border-color: rgba(85, 182, 231, 0.6);
+  box-shadow: 0 0 0 4px rgba(85, 182, 231, 0.12);
+}
+
+.badge-soft {
+  @apply rounded-full px-3 py-1 text-xs font-bold;
+}
+
+.panel-gradient {
+  background:
+    radial-gradient(circle at top right, rgba(255, 138, 61, 0.18), transparent 28%),
+    linear-gradient(135deg, #fff9ee 0%, #fff4dc 48%, #eef8ff 100%);
+  border: 1px solid rgba(85, 182, 231, 0.14);
+}
+
+.card-hover {
+  @apply transition duration-200 hover:-translate-y-1 hover:shadow-soft;
+}
+
+.scroll-soft::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+.scroll-soft::-webkit-scrollbar-thumb {
+  background: #c0ced9;
+  border-radius: 999px;
+}
+.scroll-soft::-webkit-scrollbar-track {
+  background: #eef2f6;
+}
