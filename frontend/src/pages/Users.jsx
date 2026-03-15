@@ -28,7 +28,7 @@ export default function Users() {
   return (
     <AppShell title="Usuarios" subtitle="Gestao de equipe no mesmo visual Mercado Urbano.">
       {error ? <div className="mb-4 rounded-2xl bg-rose-50 px-4 py-3 text-sm text-rose-700">{error}</div> : null}
-      <div className="grid gap-6 lg:grid-cols-[360px,1fr]">
+      <div className="grid gap-6 xl:grid-cols-[360px,1fr]">
         <SectionCard title="Novo usuario" subtitle="Cadastro rapido com campos diretos">
           <div className="space-y-3">
             <input className="input-soft" placeholder="Nome" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
@@ -46,7 +46,7 @@ export default function Users() {
         </SectionCard>
 
         <SectionCard title="Equipe" subtitle="Cards de equipe mais leves e consistentes com o restante do sistema">
-          <div className="grid gap-4 md:grid-cols-2">
+          <div className="grid gap-4 sm:grid-cols-2">
             {items.map((item) => (
               <div key={item.id} className="card-hover rounded-[24px] border border-slate-200 bg-[#f8fbfd] p-5">
                 <div className="font-bold text-slate-900">{item.name}</div>

@@ -15,7 +15,7 @@ export default function Audit() {
     <AppShell title="Auditoria" subtitle="Historico operacional com leitura mais clara e menos ruido visual.">
       {error ? <div className="mb-4 rounded-2xl bg-rose-50 px-4 py-3 text-sm text-rose-700">{error}</div> : null}
       <SectionCard title="Eventos recentes" subtitle="Ate 300 registros">
-        <div className="grid gap-4 md:grid-cols-2">
+        <div className="grid gap-4 xl:grid-cols-2">
           {items.map((item) => (
             <div key={item.id} className="card-hover rounded-[24px] border border-slate-200 bg-[#f8fbfd] p-5">
               <div className="font-bold text-slate-900">{item.action}</div>

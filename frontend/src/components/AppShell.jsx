@@ -32,20 +32,20 @@ export default function AppShell({ title, subtitle, actions, children }) {
   ), [collapsed])
 
   return (
-    <div className="min-h-screen p-4 md:p-6">
+    <div className="min-h-screen p-3 sm:p-4 md:p-6">
       <div className="mx-auto max-w-7xl">
         <section className="glass-shell overflow-hidden rounded-[36px]">
           <div className={`grid gap-0 ${widthClass}`}>
-            <aside className="border-b border-slate-200 bg-[linear-gradient(180deg,#123047_0%,#1f5f7a_64%,#ea6b4d_100%)] p-4 text-white md:p-6 lg:border-b-0 lg:border-r">
-              <div className="flex items-center justify-between gap-3">
-                <div className={`flex items-center gap-4 ${collapsed ? "justify-center w-full" : ""}`}>
+            <aside className="border-b border-slate-200 bg-[linear-gradient(180deg,#123047_0%,#1f5f7a_64%,#ea6b4d_100%)] p-4 text-white sm:p-5 md:p-6 lg:border-b-0 lg:border-r">
+              <div className="flex items-start justify-between gap-3 sm:items-center">
+                <div className={`flex min-w-0 items-center gap-3 sm:gap-4 ${collapsed ? "lg:w-full lg:justify-center" : ""}`}>
                   <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-[22px] bg-white text-lg font-black text-[#123047] shadow-lg">
                     CM
                   </div>
                   {!collapsed ? (
-                    <div>
-                      <div className="text-xl font-extrabold">Comanda na Mao</div>
-                      <div className="text-sm text-white/80">Mercado Urbano</div>
+                    <div className="min-w-0">
+                      <div className="truncate text-lg font-extrabold sm:text-xl">Comanda na Mao</div>
+                      <div className="text-xs text-white/80 sm:text-sm">Mercado Urbano</div>
                     </div>
                   ) : null}
                 </div>
@@ -58,7 +58,7 @@ export default function AppShell({ title, subtitle, actions, children }) {
                 </button>
               </div>
 
-              <div className="mt-8 space-y-3">
+              <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:mt-8 lg:grid-cols-1">
                 {items.map(([label, href, Icon]) => {
                   const active = currentPath === href
                   return (
@@ -69,18 +69,18 @@ export default function AppShell({ title, subtitle, actions, children }) {
                         active
                           ? "bg-white text-[#123047] shadow-lg"
                           : "bg-white/14 text-white/92 hover:bg-white/22"
-                      } ${collapsed ? "justify-center" : ""}`}
+                      } ${collapsed ? "lg:justify-center" : ""}`}
                       title={label}
                     >
                       <Icon size={18} />
-                      {!collapsed ? <span>{label}</span> : null}
+                      {!collapsed ? <span className="truncate">{label}</span> : null}
                     </a>
                   )
                 })}
               </div>
 
-              <div className="mt-8 rounded-[24px] border border-white/20 bg-white/12 p-4 backdrop-blur">
-                <div className={`text-sm font-semibold text-white/84 ${collapsed ? "text-center" : ""}`}>Sessao</div>
+              <div className="mt-6 rounded-[24px] border border-white/20 bg-white/12 p-4 backdrop-blur lg:mt-8">
+                <div className={`text-sm font-semibold text-white/84 ${collapsed ? "lg:text-center" : ""}`}>Sessao</div>
                 {!collapsed ? (
                   <>
                     <div className="mt-3 rounded-2xl bg-white/12 p-3 text-sm text-white/85">
@@ -115,7 +115,7 @@ export default function AppShell({ title, subtitle, actions, children }) {
               </div>
             </aside>
 
-            <main className="bg-[linear-gradient(180deg,#f8fbfd_0%,#f2f7fa_100%)] p-5 md:p-8">
+            <main className="bg-[linear-gradient(180deg,#f8fbfd_0%,#f2f7fa_100%)] p-4 sm:p-5 md:p-8">
               <motion.div
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -126,10 +126,10 @@ export default function AppShell({ title, subtitle, actions, children }) {
                   <div className="inline-flex rounded-full bg-[#e7f0f5] px-3 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-[#1f5f7a]">
                     Operacao
                   </div>
-                  <h1 className="mt-4 text-4xl font-extrabold tracking-tight text-slate-900">{title}</h1>
-                  {subtitle ? <p className="mt-2 max-w-2xl text-base text-slate-600">{subtitle}</p> : null}
+                  <h1 className="mt-4 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">{title}</h1>
+                  {subtitle ? <p className="mt-2 max-w-2xl text-sm text-slate-600 sm:text-base">{subtitle}</p> : null}
                 </div>
-                <div className="flex gap-3 flex-wrap">{actions}</div>
+                <div className="flex w-full flex-wrap gap-3 md:w-auto md:justify-end [&>*]:w-full md:[&>*]:w-auto">{actions}</div>
               </motion.div>
 
               <div className="mt-8">{children}</div>

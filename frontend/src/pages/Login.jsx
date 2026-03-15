@@ -20,13 +20,13 @@ export default function Login() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center p-4 md:p-6">
-      <div className="grid w-full max-w-6xl gap-8 rounded-[36px] border border-slate-200 bg-white/90 p-6 shadow-[0_28px_90px_rgba(20,48,73,0.14)] backdrop-blur lg:grid-cols-[1.08fr,0.92fr] lg:p-8">
+    <div className="flex min-h-screen items-center justify-center p-3 sm:p-4 md:p-6">
+      <div className="grid w-full max-w-6xl gap-5 rounded-[32px] border border-slate-200 bg-white/90 p-4 shadow-[0_28px_90px_rgba(20,48,73,0.14)] backdrop-blur sm:p-6 lg:grid-cols-[1.08fr,0.92fr] lg:gap-8 lg:p-8">
         <motion.div
           initial={{ opacity: 0, x: -16 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.3 }}
-          className="panel-gradient rounded-[30px] p-8"
+          className="panel-gradient rounded-[28px] p-5 sm:p-6 lg:p-8"
         >
           <div className="inline-flex rounded-full bg-[#123047] px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-white">
             Modelo 6 aplicado
@@ -34,14 +34,14 @@ export default function Login() {
           <div className="mt-6 inline-flex h-16 w-16 items-center justify-center rounded-[24px] bg-white text-lg font-black text-[#123047] shadow-lg">
             CM
           </div>
-          <h1 className="mt-6 max-w-2xl text-4xl font-extrabold leading-tight text-slate-900 md:text-5xl">
+          <h1 className="mt-6 max-w-2xl text-3xl font-extrabold leading-tight text-slate-900 sm:text-4xl md:text-5xl">
             Operacao de restaurante com visual mais vivo, comercial e atual.
           </h1>
-          <p className="mt-4 max-w-xl text-lg text-slate-600">
+          <p className="mt-4 max-w-xl text-base text-slate-600 sm:text-lg">
             Mercado Urbano combina grid forte, cores limpas e atmosfera de produto jovem sem perder clareza operacional.
           </p>
 
-          <div className="mt-8 grid gap-4 md:grid-cols-3">
+          <div className="mt-8 grid gap-4 sm:grid-cols-3">
             {[
               [ChefHat, "Cozinha"],
               [Wallet, "Caixa"],
@@ -54,7 +54,7 @@ export default function Login() {
             ))}
           </div>
 
-          <div className="mt-8 grid gap-4 md:grid-cols-3">
+          <div className="mt-8 grid gap-4 sm:grid-cols-3">
             {[
               ["Pedidos", "22"],
               ["Ticket", "R$ 94"],
@@ -74,11 +74,11 @@ export default function Login() {
           transition={{ duration: 0.3 }}
           className="flex items-center"
         >
-          <div className="w-full rounded-[30px] border border-slate-200 bg-white p-8 shadow-[0_16px_48px_rgba(20,48,73,0.08)]">
+          <div className="w-full rounded-[28px] border border-slate-200 bg-white p-5 shadow-[0_16px_48px_rgba(20,48,73,0.08)] sm:p-6 lg:p-8">
             <div className="inline-flex rounded-full bg-[#eaf1f5] px-3 py-1 text-xs font-semibold uppercase tracking-[0.24em] text-[#1f5f7a]">
               Acesso
             </div>
-            <div className="mt-4 text-3xl font-extrabold text-slate-900">Entrar</div>
+            <div className="mt-4 text-2xl font-extrabold text-slate-900 sm:text-3xl">Entrar</div>
             <p className="mt-2 text-slate-500">Acesse o Comanda na Mao com a direcao Mercado Urbano.</p>
 
             <div className="mt-8 space-y-4">

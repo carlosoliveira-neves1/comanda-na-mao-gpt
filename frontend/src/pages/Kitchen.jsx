@@ -21,7 +21,7 @@ export default function Kitchen() {
   return (
     <AppShell title="Cozinha" subtitle="Fila de producao com leitura direta e blocos mais firmes.">
       <SectionCard title="Pedidos em producao" subtitle="Leitura e acao rapida no estilo Mercado Urbano">
-        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-2 2xl:grid-cols-3">
           {orders.map((order) => (
             <div key={order.id} className="card-hover rounded-[28px] border border-slate-200 bg-white p-5 shadow-[0_16px_40px_rgba(20,48,73,0.08)]">
               <div className="flex items-center justify-between">
@@ -45,11 +45,11 @@ export default function Kitchen() {
                 Atualize o status conforme o preparo.
               </div>
 
-              <div className="mt-4 flex gap-2">
-                <button className="rounded-xl bg-amber-200 px-3 py-2 text-sm font-semibold text-amber-900" onClick={() => updateStatus(order.id, "preparando")}>
+              <div className="mt-4 flex flex-wrap gap-2">
+                <button className="flex-1 rounded-xl bg-amber-200 px-3 py-2 text-sm font-semibold text-amber-900 sm:flex-none" onClick={() => updateStatus(order.id, "preparando")}>
                   Preparando
                 </button>
-                <button className="rounded-xl bg-emerald-500 px-3 py-2 text-sm font-semibold text-white" onClick={() => updateStatus(order.id, "pronto")}>
+                <button className="flex-1 rounded-xl bg-emerald-500 px-3 py-2 text-sm font-semibold text-white sm:flex-none" onClick={() => updateStatus(order.id, "pronto")}>
                   Pronto
                 </button>
               </div>

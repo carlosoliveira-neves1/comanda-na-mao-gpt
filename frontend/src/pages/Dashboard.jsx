@@ -36,12 +36,12 @@ export default function Dashboard() {
       subtitle={user ? `${user.name} - ${user.role}` : "Painel principal do sistema"}
       actions={
         <>
-          <a href="/salon" className="btn-secondary">Salao</a>
-          <a href="/cash-desk" className="btn-primary">Caixa</a>
+          <a href="/salon" className="btn-secondary text-center">Salao</a>
+          <a href="/cash-desk" className="btn-primary text-center">Caixa</a>
         </>
       }
     >
-      <div className="grid gap-4 md:grid-cols-5">
+      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
         <StatCard title="Pedidos" value={data.totalOrders} icon={<ClipboardList size={20} />} color="from-[#ea6b4d] to-[#ffd166]" />
         <StatCard title="Faturamento" value={`R$ ${Number(data.totalRevenue || 0).toFixed(2)}`} icon={<Wallet size={20} />} color="from-[#1f5f7a] to-[#55b6e7]" />
         <StatCard title="Fila impressao" value={data.printQueueCount} icon={<Printer size={20} />} color="from-[#7dcfb6] to-[#28b284]" />
@@ -51,7 +51,7 @@ export default function Dashboard() {
 
       <div className="mt-6 grid gap-6 lg:grid-cols-[1.12fr,0.88fr]">
         <SectionCard title="Visao do salao" subtitle="Grade rapida das mesas e ocupacao">
-          <div className="grid gap-4 md:grid-cols-3">
+          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
             {data.tables?.map((table) => (
               <div key={table.id} className="card-hover rounded-[24px] border border-slate-200 bg-[#f8fbfd] p-4">
                 <div className="flex items-center justify-between">
@@ -68,7 +68,7 @@ export default function Dashboard() {
 
         <div className="grid gap-6">
           <SectionCard title="Radar do turno" subtitle="Pontos rapidos para decidir a proxima acao">
-            <div className="grid gap-4 md:grid-cols-2">
+            <div className="grid gap-4 sm:grid-cols-2">
               <div className="panel-gradient rounded-[24px] p-5">
                 <div className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.18em] text-[#1f5f7a]">
                   <TrendingUp size={16} />
@@ -90,7 +90,7 @@ export default function Dashboard() {
           </SectionCard>
 
           <SectionCard title="Atalhos" subtitle="Fluxos principais do turno">
-            <div className="grid gap-4 md:grid-cols-3">
+            <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
               {[
                 ["Salao", "Criar pedidos e acompanhar mesas", "/salon"],
                 ["Cozinha", "Atualizar preparo e fila", "/kitchen"],

@@ -49,13 +49,13 @@ export default function Salon() {
       title="Salao"
       subtitle="Pedidos, mesas e acompanhamento de atendimento no visual Mercado Urbano."
       actions={
-        <button className="btn-primary flex items-center gap-2" onClick={sendOrder}>
+        <button className="btn-primary flex items-center justify-center gap-2" onClick={sendOrder}>
           <PlusCircle size={18} />
           Enviar pedido
         </button>
       }
     >
-      <div className="grid gap-6 lg:grid-cols-[390px,1fr]">
+      <div className="grid gap-6 xl:grid-cols-[390px,1fr]">
         <SectionCard title="Novo pedido" subtitle="Monte a comanda com leitura rapida e menu direto">
           <div className="space-y-3">
             <select className="input-soft" value={tableId} onChange={(e) => setTableId(e.target.value)}>
@@ -72,7 +72,7 @@ export default function Salon() {
               onChange={(e) => setCustomerName(e.target.value)}
             />
 
-            <div className="grid max-h-[420px] gap-3 overflow-auto scroll-soft pr-1">
+            <div className="grid max-h-[360px] gap-3 overflow-auto scroll-soft pr-1 sm:max-h-[420px]">
               {menu.map((item) => (
                 <button
                   key={item.id}
@@ -104,7 +104,7 @@ export default function Salon() {
 
         <div className="grid gap-6">
           <SectionCard title="Mesas" subtitle="Visao leve e comercial da ocupacao atual">
-            <div className="grid gap-4 md:grid-cols-3">
+            <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
               {tables.map((table) => (
                 <div key={table.id} className="card-hover rounded-[24px] border border-slate-200 bg-[#f8fbfd] p-4">
                   <div className="flex items-center justify-between">
@@ -129,15 +129,15 @@ export default function Salon() {
           <SectionCard title="Pedidos" subtitle="Cards mais firmes para acompanhar a fila do salao">
             <div className="space-y-3">
               {orders.map((order) => (
-                <div key={order.id} className="card-hover grid gap-4 rounded-[24px] border border-slate-200 bg-[#f8fbfd] p-5 md:grid-cols-[1fr,auto] md:items-center">
+                <div key={order.id} className="card-hover grid gap-4 rounded-[24px] border border-slate-200 bg-[#f8fbfd] p-5 xl:grid-cols-[1fr,auto] xl:items-center">
                   <div>
                     <div className="font-bold text-slate-900">Pedido #{order.id}</div>
                     <div className="mt-1 text-sm text-slate-500">Mesa {order.table?.number} - Status: {order.status}</div>
                   </div>
                   <div className="flex flex-wrap gap-2">
-                    <button className="rounded-xl bg-amber-200 px-3 py-2 text-sm font-semibold text-amber-900" onClick={() => updateStatus(order.id, "preparando")}>Preparando</button>
-                    <button className="rounded-xl bg-emerald-500 px-3 py-2 text-sm font-semibold text-white" onClick={() => updateStatus(order.id, "pronto")}>Pronto</button>
-                    <button className="rounded-xl bg-sky-500 px-3 py-2 text-sm font-semibold text-white" onClick={() => updateStatus(order.id, "entregue")}>Entregue</button>
+                    <button className="flex-1 rounded-xl bg-amber-200 px-3 py-2 text-sm font-semibold text-amber-900 sm:flex-none" onClick={() => updateStatus(order.id, "preparando")}>Preparando</button>
+                    <button className="flex-1 rounded-xl bg-emerald-500 px-3 py-2 text-sm font-semibold text-white sm:flex-none" onClick={() => updateStatus(order.id, "pronto")}>Pronto</button>
+                    <button className="flex-1 rounded-xl bg-sky-500 px-3 py-2 text-sm font-semibold text-white sm:flex-none" onClick={() => updateStatus(order.id, "entregue")}>Entregue</button>
                   </div>
                 </div>
               ))}

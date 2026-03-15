@@ -15,7 +15,7 @@ export default function PaymentsHistory() {
     <AppShell title="Historico de Pagamentos" subtitle="Conferencia financeira no mesmo visual leve e comercial.">
       {error ? <div className="mb-4 rounded-2xl bg-rose-50 px-4 py-3 text-sm text-rose-700">{error}</div> : null}
       <SectionCard title="Pagamentos registrados" subtitle="Leitura rapida por pedido e forma de recebimento">
-        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
           {items.map((item) => (
             <div key={item.id} className="card-hover rounded-[24px] border border-slate-200 bg-[#f8fbfd] p-5">
               <div className="font-bold text-slate-900">Pedido {item.orderId || "-"}</div>

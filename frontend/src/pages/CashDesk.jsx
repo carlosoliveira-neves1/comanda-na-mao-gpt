@@ -72,7 +72,7 @@ export default function CashDesk() {
   return (
     <AppShell title="Caixa" subtitle="Fluxo financeiro reorganizado no mesmo visual Mercado Urbano.">
       {error ? <div className="mb-4 rounded-2xl bg-rose-50 px-4 py-3 text-sm text-rose-700">{error}</div> : null}
-      <div className="grid gap-6 lg:grid-cols-[320px,360px,360px,1fr]">
+      <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-[320px,360px,360px,1fr]">
         <SectionCard title="Abrir caixa" subtitle="Defina o fundo inicial do turno">
           <div className="space-y-3">
             <input className="input-soft" placeholder="Fundo inicial" value={openForm.openingAmount} onChange={(e) => setOpenForm({ ...openForm, openingAmount: e.target.value })} />
@@ -120,7 +120,7 @@ export default function CashDesk() {
           </div>
         </SectionCard>
 
-        <div className="space-y-4">
+        <div className="space-y-4 md:col-span-2 xl:col-span-3 2xl:col-span-1">
           {registers.map((register) => (
             <div key={register.id} className="card-hover rounded-[28px] border border-slate-200 bg-white p-5 shadow-[0_16px_40px_rgba(20,48,73,0.08)]">
               <div className="font-bold text-slate-900">Caixa #{register.id}</div>
@@ -132,7 +132,7 @@ export default function CashDesk() {
                 <div>Esperado: R$ {Number(register.expectedAmount || 0).toFixed(2)}</div>
               </div>
               {register.status === "OPEN" ? (
-                <button className="mt-4 rounded-2xl bg-rose-500 px-4 py-2 text-sm font-semibold text-white" onClick={() => closeRegister(register.id)}>
+                <button className="mt-4 w-full rounded-2xl bg-rose-500 px-4 py-2 text-sm font-semibold text-white sm:w-auto" onClick={() => closeRegister(register.id)}>
                   Fechar caixa
                 </button>
               ) : null}
