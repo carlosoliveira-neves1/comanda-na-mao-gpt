@@ -1,0 +1,12 @@
+{
+  "name": "comanda-na-mao-monorepo",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "build": "npm --prefix backend exec prisma generate && npm --prefix frontend run build",
+    "postinstall": "npm --prefix backend exec prisma generate"
+  }
+}
