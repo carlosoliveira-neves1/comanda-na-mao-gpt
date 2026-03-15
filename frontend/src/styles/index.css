@@ -52,9 +52,10 @@ body {
 }
 
 .btn-primary {
-  @apply rounded-2xl px-4 py-3 font-semibold shadow-soft transition duration-200 hover:-translate-y-0.5;
+  @apply rounded-2xl px-4 py-3 font-semibold transition duration-200 hover:-translate-y-0.5;
   color: #17212b;
   background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
+  box-shadow: 0 16px 32px rgba(255, 181, 77, 0.28);
 }
 
 .btn-secondary {
@@ -92,7 +93,11 @@ body {
 }
 
 .card-hover {
-  @apply transition duration-200 hover:-translate-y-1 hover:shadow-soft;
+  @apply transition duration-200 hover:-translate-y-1;
+}
+
+.card-hover:hover {
+  box-shadow: 0 18px 38px rgba(28, 45, 64, 0.12);
 }
 
 .scroll-soft::-webkit-scrollbar {

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { Flame, TimerReset } from "lucide-react"
 import api from "../services/api"
 import AppShell from "../components/AppShell"
 import SectionCard from "../components/SectionCard"
@@ -18,24 +19,52 @@ export default function Kitchen() {
   }
 
   return (
-    <AppShell title="Cozinha" subtitle="Layout mais sólido para operação.">
-      <SectionCard title="Pedidos em produção" subtitle="Leitura e ação rápida">
+    <AppShell title="Cozinha" subtitle="Fila de producao com leitura direta e blocos mais firmes.">
+      <SectionCard title="Pedidos em producao" subtitle="Leitura e acao rapida no estilo Mercado Urbano">
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-          {orders.map((o)=>
-            <div key={o.id} className="card-soft card-hover p-5">
-              <div className="font-bold text-slate-900">Pedido #{o.id}</div>
-              <div className="text-sm text-slate-500">Mesa {o.table?.number}</div>
-              <div className="mt-1 text-sm text-slate-500">Status: {o.status}</div>
-              <div className="mt-4 space-y-2">
-                {o.items?.map((i)=><div key={i.id} className="rounded-xl bg-slate-50 px-3 py-2 text-sm text-slate-700">{i.quantity}x {i.menuItem?.name}</div>)}
+          {orders.map((order) => (
+            <div key={order.id} className="card-hover rounded-[28px] border border-slate-200 bg-white p-5 shadow-[0_16px_40px_rgba(20,48,73,0.08)]">
+              <div className="flex items-center justify-between">
+                <div className="font-bold text-slate-900">Pedido #{order.id}</div>
+                <div className="rounded-full bg-[#d8eaf2] px-3 py-1 text-xs font-bold text-[#19526a]">
+                  {order.status}
+                </div>
               </div>
+              <div className="mt-2 text-sm text-slate-500">Mesa {order.table?.number}</div>
+
+              <div className="mt-4 space-y-2">
+                {order.items?.map((item) => (
+                  <div key={item.id} className="rounded-xl border border-slate-200 bg-[#f8fbfd] px-3 py-2 text-sm text-slate-700">
+                    {item.quantity}x {item.menuItem?.name}
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-4 flex items-center gap-2 text-sm text-slate-500">
+                <TimerReset size={14} />
+                Atualize o status conforme o preparo.
+              </div>
+
               <div className="mt-4 flex gap-2">
-                <button className="rounded-xl bg-yellow-300 px-3 py-2 text-sm font-semibold text-slate-900" onClick={()=>updateStatus(o.id,"preparando")}>Preparando</button>
-                <button className="rounded-xl bg-emerald-500 px-3 py-2 text-sm font-semibold text-white" onClick={()=>updateStatus(o.id,"pronto")}>Pronto</button>
+                <button className="rounded-xl bg-amber-200 px-3 py-2 text-sm font-semibold text-amber-900" onClick={() => updateStatus(order.id, "preparando")}>
+                  Preparando
+                </button>
+                <button className="rounded-xl bg-emerald-500 px-3 py-2 text-sm font-semibold text-white" onClick={() => updateStatus(order.id, "pronto")}>
+                  Pronto
+                </button>
               </div>
             </div>
-          )}
+          ))}
         </div>
+
+        {!orders.length ? (
+          <div className="mt-4 rounded-[24px] border border-slate-200 bg-[#f8fbfd] p-6 text-sm text-slate-500">
+            <div className="flex items-center gap-2 font-semibold text-slate-700">
+              <Flame size={16} />
+              Nenhum pedido na fila agora.
+            </div>
+          </div>
+        ) : null}
       </SectionCard>
     </AppShell>
   )

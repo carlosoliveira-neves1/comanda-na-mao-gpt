@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Sparkles, ShieldCheck, ReceiptText } from "lucide-react"
+import { ArrowRight, ChefHat, ShieldCheck, Wallet } from "lucide-react"
 import { motion } from "framer-motion"
 import api from "../services/api"
 
@@ -21,40 +21,74 @@ export default function Login() {
 
   return (
     <div className="flex min-h-screen items-center justify-center p-4 md:p-6">
-      <div className="grid w-full max-w-6xl gap-8 rounded-[34px] border border-white/70 bg-white/80 p-6 shadow-soft backdrop-blur lg:grid-cols-[1.1fr,0.9fr] lg:p-8">
-        <motion.div initial={{ opacity: 0, x: -16 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.3 }} className="panel-gradient rounded-[30px] p-8">
-          <div className="inline-flex h-16 w-16 items-center justify-center rounded-[24px] bg-white text-3xl shadow-lg">🍔</div>
-          <h1 className="mt-6 text-4xl font-extrabold leading-tight text-slate-900 md:text-5xl">
-            Cara de produto premium, sem perder leveza.
+      <div className="grid w-full max-w-6xl gap-8 rounded-[36px] border border-slate-200 bg-white/90 p-6 shadow-[0_28px_90px_rgba(20,48,73,0.14)] backdrop-blur lg:grid-cols-[1.08fr,0.92fr] lg:p-8">
+        <motion.div
+          initial={{ opacity: 0, x: -16 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.3 }}
+          className="panel-gradient rounded-[30px] p-8"
+        >
+          <div className="inline-flex rounded-full bg-[#123047] px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-white">
+            Modelo 6 aplicado
+          </div>
+          <div className="mt-6 inline-flex h-16 w-16 items-center justify-center rounded-[24px] bg-white text-lg font-black text-[#123047] shadow-lg">
+            CM
+          </div>
+          <h1 className="mt-6 max-w-2xl text-4xl font-extrabold leading-tight text-slate-900 md:text-5xl">
+            Operacao de restaurante com visual mais vivo, comercial e atual.
           </h1>
           <p className="mt-4 max-w-xl text-lg text-slate-600">
-            Frontend mais refinado, mais apresentável e com mais sensação de sistema profissional de verdade.
+            Mercado Urbano combina grid forte, cores limpas e atmosfera de produto jovem sem perder clareza operacional.
           </p>
 
           <div className="mt-8 grid gap-4 md:grid-cols-3">
             {[
-              [Sparkles, "Mais premium"],
-              [ReceiptText, "Mais elegante"],
-              [ShieldCheck, "Mais confiável"],
+              [ChefHat, "Cozinha"],
+              [Wallet, "Caixa"],
+              [ShieldCheck, "Confianca"],
             ].map(([Icon, label]) => (
-              <div key={label} className="rounded-2xl bg-white/80 p-4 shadow-sm">
-                <Icon size={26} className="text-slate-800" />
-                <div className="mt-3 text-sm font-semibold text-slate-700">{label}</div>
+              <div key={label} className="rounded-2xl border border-white/60 bg-white/70 p-4 shadow-sm">
+                <Icon size={24} className="text-[#1f5f7a]" />
+                <div className="mt-3 text-sm font-semibold text-slate-800">{label}</div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-8 grid gap-4 md:grid-cols-3">
+            {[
+              ["Pedidos", "22"],
+              ["Ticket", "R$ 94"],
+              ["Mesas", "11 ativas"],
+            ].map(([label, value]) => (
+              <div key={label} className="rounded-2xl border border-white/60 bg-white/70 p-4">
+                <div className="text-sm text-slate-500">{label}</div>
+                <div className="mt-2 text-2xl font-extrabold text-slate-900">{value}</div>
               </div>
             ))}
           </div>
         </motion.div>
 
-        <motion.div initial={{ opacity: 0, x: 16 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.3 }} className="flex items-center">
-          <div className="w-full rounded-[30px] bg-white p-8 shadow-card ring-1 ring-slate-100">
-            <div className="text-3xl font-extrabold text-slate-900">Entrar</div>
-            <p className="mt-2 text-slate-500">Acesse o Comanda na Mão V6.3</p>
+        <motion.div
+          initial={{ opacity: 0, x: 16 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.3 }}
+          className="flex items-center"
+        >
+          <div className="w-full rounded-[30px] border border-slate-200 bg-white p-8 shadow-[0_16px_48px_rgba(20,48,73,0.08)]">
+            <div className="inline-flex rounded-full bg-[#eaf1f5] px-3 py-1 text-xs font-semibold uppercase tracking-[0.24em] text-[#1f5f7a]">
+              Acesso
+            </div>
+            <div className="mt-4 text-3xl font-extrabold text-slate-900">Entrar</div>
+            <p className="mt-2 text-slate-500">Acesse o Comanda na Mao com a direcao Mercado Urbano.</p>
 
             <div className="mt-8 space-y-4">
-              <input className="input-soft" value={email} onChange={(e) => setEmail(e.target.value)} />
-              <input className="input-soft" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-              <button className="btn-primary w-full" onClick={login}>Entrar no sistema</button>
-              {error ? <div className="rounded-2xl bg-red-50 px-4 py-3 text-sm text-red-700">{error}</div> : null}
+              <input className="input-soft" placeholder="E-mail" value={email} onChange={(e) => setEmail(e.target.value)} />
+              <input className="input-soft" type="password" placeholder="Senha" value={password} onChange={(e) => setPassword(e.target.value)} />
+              <button className="btn-primary flex w-full items-center justify-center gap-2" onClick={login}>
+                Entrar no sistema
+                <ArrowRight size={18} />
+              </button>
+              {error ? <div className="rounded-2xl bg-rose-50 px-4 py-3 text-sm text-rose-700">{error}</div> : null}
             </div>
           </div>
         </motion.div>
