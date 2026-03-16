@@ -7,6 +7,7 @@ import CashDesk from "./pages/CashDesk"
 import PaymentsHistory from "./pages/PaymentsHistory"
 import Users from "./pages/Users"
 import Audit from "./pages/Audit"
+import Menu from "./pages/Menu"
 import VisualShowcase from "./pages/VisualShowcase"
 import { ProtectedRoute, PublicOnlyRoute } from "./components/RouteGuards"
 
@@ -17,6 +18,8 @@ export default function App() {
         <Route element={<PublicOnlyRoute />}>
           <Route path="/" element={<Login />} />
         </Route>
+
+        <Route path="/mesa/:table" element={<Menu />} />
 
         <Route element={<ProtectedRoute />}>
           <Route path="/dashboard" element={<Dashboard />} />
